@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><title>Search Results</title></head>
+  <body>
+    <h1>Search Results</h1>
+    {% if results %}
+      <ul>
+        {% for r in results %}
+          <li>{{ r.id }} - {{ r.name }} ({{ r.age }}): {{ r.condition }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No results found.</p>
+    {% endif %}
+    <p><a href="/search">Back to search</a> | <a href="/">Home</a></p>
+  </body>
+</html>
