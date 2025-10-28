@@ -1,21 +1,46 @@
 <!doctype html>
 <html>
-  <head><meta charset="utf-8"><title>All Patients</title></head>
+  <head>
+    <meta charset="utf-8">
+    <title>All Patients</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
   <body>
-    <h1>All Patients</h1>
-    {% if patients %}
-      <ul>
-        {% for p in patients %}
-          <li>{{ p.id }} - {{ p.name }} ({{ p.age }}): {{ p.condition }}
-            <form style="display:inline" method="post" action="/delete_patient/{{ p.id }}">
-              <button type="submit">Delete</button>
-            </form>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>No patients found.</p>
-    {% endif %}
-    <p><a href="/add_patient">Add new patient</a> | <a href="/">Home</a></p>
+    <header>
+      <h1>All Patients</h1>
+      <nav>
+        <a href="{{ url_for('home') }}">Home</a> |
+        <a href="{{ url_for('add_patient') }}">Add patient</a> |
+        <a href="{{ url_for('search_patient') }}">Search</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, msg in messages %}
+            <div class="flash flash-{{ 'success' if category=='success' else 'error' }}">{{ msg }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      {% if patients %}
+        <ul class="patients-list">
+          {% for p in patients %}
+            <li>
+              <strong>{{ p.name }}</strong> — {{ p.age }} years — {{ p.condition }}
+              <span class="actions">
+                <a href="{{ url_for('edit_patient', patient_id=p.id) }}" class="small-link">Edit</a>
+                <form style="display:inline" method="post" action="{{ url_for('delete_patient', patient_id=p.id) }}">
+                  <button type="submit" class="small-link">Delete</button>
+                </form>
+              </span>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No patients found.</p>
+      {% endif %}
+    </main>
   </body>
 </html>

@@ -1,17 +1,24 @@
 <!doctype html>
 <html>
-  <head><meta charset="utf-8"><title>Search Results</title></head>
+  <head><meta charset="utf-8"><title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
   <body>
-    <h1>Search Results</h1>
-    {% if results %}
-      <ul>
-        {% for r in results %}
-          <li>{{ r.id }} - {{ r.name }} ({{ r.age }}): {{ r.condition }}</li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>No results found.</p>
-    {% endif %}
-    <p><a href="/search">Back to search</a> | <a href="/">Home</a></p>
+    <header>
+      <h1>Search Results</h1>
+      <nav><a href="{{ url_for('search_patient') }}">Back to search</a> | <a href="{{ url_for('home') }}">Home</a></nav>
+    </header>
+
+    <main class="container">
+      {% if results %}
+        <ul>
+          {% for r in results %}
+            <li>{{ r.name }} — {{ r.age }} — {{ r.condition }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No results found for "{{ query }}"</p>
+      {% endif %}
+    </main>
   </body>
 </html>

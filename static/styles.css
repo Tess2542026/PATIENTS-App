@@ -1,0 +1,66 @@
+/* Basic styling for Patients App */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0 1rem;
+  background: #f6f8fa;
+  color: #222;
+}
+
+header, nav, main {
+  max-width: 900px;
+  margin: 1rem auto;
+}
+
+header h1 {
+  margin: 0.6rem 0;
+  color: #2b6cb0;
+}
+
+nav a {
+  color: #2b6cb0;
+  text-decoration: none;
+  margin-right: 0.6rem;
+}
+
+.container {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(16,24,40,0.06);
+}
+
+form label { display:block; margin:0.5rem 0; }
+input[type="text"], input[type="number"], textarea {
+  padding: 0.4rem;
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  padding: 0.5rem 0.9rem;
+  background: #2b6cb0;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover { opacity: 0.95; }
+
+.flash {
+  padding: 0.6rem 1rem;
+  margin: 0.6rem 0;
+  border-radius: 4px;
+}
+
+.flash-success { background: #f0fff4; color: #22543d; border: 1px solid #c6f6d5; }
+.flash-error { background: #fff5f5; color: #742a2a; border: 1px solid #feb2b2; }
+
+.patients-list { list-style: none; padding-left: 0; }
+.patients-list li { padding: 0.6rem 0; border-bottom: 1px solid #eee; }
+.actions { margin-left: 0.6rem; display:inline-block; }
+.small-link { background: transparent; color:#2b6cb0; border: none; padding:0; cursor:pointer; text-decoration:underline; }
