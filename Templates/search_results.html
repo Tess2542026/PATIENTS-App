@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+    <h1>Search Results</h1>
+    {% if results %}
+        <div class="table-container">
+            <table class="patients-table">
+                <thead>
+                    <tr>
+                        <th class="col-id">ID</th>
+                        <th>Name</th>
+                        <th class="col-age">Age</th>
+                        <th>Condition</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for patient in results %}
+                    <tr>
+                        <td>{{ patient.id }}</td>
+                        <td>{{ patient.name }}</td>
+                        <td>{{ patient.age }}</td>
+                                    <td class="condition">{{ patient.condition }}</td>
+                                    <td class="actions">
+                                        <form method="POST" action="{{ url_for('delete_patient', patient_id=patient.id) }}" onsubmit="return confirm('Delete this patient?');">
+                                            <button type="submit">Delete</button>
+                                        </form>
+                                    </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No patients found.</p>
+    {% endif %}
+{% endblock %}
