@@ -1,0 +1,8 @@
+venv/
+__pycache__/
+*.pyc
+instance/
+.env
+patients.db
+.DS_Store
+*.sqlite3
